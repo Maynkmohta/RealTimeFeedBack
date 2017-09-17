@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 require('mongoose-type-url');
 var Schema = mongoose.Schema;
 
-var teacher = new Schema({
+var student = new Schema({
 	
 	firstname	:	String,
 	middlename	:	String,
