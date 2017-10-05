@@ -1,25 +1,42 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
 var student = require('../models/student');
 var schedule = require('../models/schedule');
 var clas = require('../models/clas');
 var jwt = require('jsonwebtoken');
 var jwtVerify = require('../routes/jwtVerify');
 var superSecret = require('../config');
+var token = require('../models/token');
 
 
-/*router.post('/registration',function(req,res){
-    var student1 = new student({'firstname':req.body.firstname,
+router.post('/registration',function(req,res){
+    var student1 = student({'firstname':req.body.firstname,
 		'middlename':req.body.middlename,
 		'lastname':req.body.lastname,
 		'email':req.body.email,
-		'uniroll':req.body.uniroll,
 		'password':req.body.password,
-		'university':req.body.university,
-		'whatsappno':req.body.whatsappno,
-		'subjcode':req.body.subjcode,
-        'semester':req.body.semester,
-        'branch':req.body.branch})
+        'uniroll':req.body.uniroll,
+        'whatsappno':req.body.whatsappno,
+		'university':[{
+            'collegename': req.body.collegename,
+            'collegeid':req.body.collegeid
+        }],
+		'subjcode':[{
+            'subcode':req.body.subcode
+        }],
+        'branch':[{
+            'branchname':req.body.branchname,
+            'branchid':req.body.branchid
+        }],
+        'semester':[{
+                'semno':req.body.semno,
+                'year':req.body.year
+                    }]
+        })
+
+    
+   
+
 
     console.log("--------"+student1)
     student1.save(function(err,data){
@@ -54,8 +71,10 @@ router.post('/login', function(req, res) {
 
           // if student is found and password is right
           // create a token
-          console.log("welcome");
-		    var token = jwt.sign(student, superSecret.secret, {
+          console.log(student);
+            var tokenData = new Object({email: student.email, uniroll:student.uniroll,collegeid: student.collegeid,
+			collegename:student.collegename, subcode: student.subcode})
+		    var token = jwt.sign(tokenData, superSecret.secret, {
             expiresIn: 86400 // expires in 24 hours
           });
 
@@ -70,53 +89,13 @@ router.post('/login', function(req, res) {
 
     })
   }
-})*/
-
-
-
-
-
-
-
-router.get('/schedule',function(req,res){
-    schedule.find(function(err,data){
-        if (err) {
-            console.log(err)
-            res.end("SOME ERROR OCCURED")
-        }
-        res.json(data)
-    })
 })
 
-router.post('/fillfeedback',function(req,res){
-    var clas1 = new clas({'classid':req.body.classid,
-		'teacherid':req.body.teacherid,
-		'collegeid':req.body.collegeid,
-		'subcode':req.body.subcode,
-		'subjectname':req.body.subjectname,
-		'feedback':req.body.feedback })
-
-    console.log("--------"+clas1)
-    clas1.save(function(err,data){
-        if(err){
-            console.log(err)
-        }
-        res.json(data)
-    })
-})
-	
-	
-router.post('/logout', function (req, res) {
-  req.token.destroy();
-  res.send("logout success!");
-})
-	
-	
-	
-	
 
 
 
 
 
+
+	
 module.exports = router;

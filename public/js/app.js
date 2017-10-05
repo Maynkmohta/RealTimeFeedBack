@@ -1,6 +1,7 @@
 var app=angular.module('myapp',['ngRoute']);
 // npm i -g http-server
 // http-server
+
 app.config(function($routeProvider,$locationProvider){
 	console.log('Hello config');
 	// $routeProvider.when(string,object)
@@ -45,6 +46,7 @@ app.config(function($routeProvider,$locationProvider){
 		templateUrl:'views/showschedule.html',
 		controller:'showScheduleController'
 	});
+	
 	$locationProvider.html5Mode(true);
 });
 
@@ -63,17 +65,16 @@ app.controller('downloadnotesController',function($scope,$q,$http){
 });
 app.controller('submitFeedbackController',function($scope,$q,$http,$routeParams){
 	console.log('submit feedback Controller called!');
-		$scope.calldata=function(){
+	$scope.submitForm=function(){
+        $http.post('/studentapi/fillfeedback',$scope.formdata).
+        then(function(response) {
+            console.log("posted successfully");
+        }).catch(function(response) {
+            console.error("error in posting");
+        })
+    
+}		
 	
-	}
-	$scope.calldata();
-	$scope.sendmsg=function(){
-
-	}
-	$scope.sendemail=function(){
-		
-	}
-
 });
 app.controller('editfeedbackController',function($scope,$q,$http){
 	console.log('edit feedback Controller called!!');

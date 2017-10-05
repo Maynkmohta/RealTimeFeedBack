@@ -10,7 +10,7 @@
 <h2 style="text-align:center">Feedback</h2> <hr> 
 
 <br>
- <form class="form">
+ <form class="form" ng-submit="submitForm()" name="feedbackForm">
 	<div class="col-md-12">
 	<div class="form-group">
     <label for="mname">
@@ -20,7 +20,7 @@
 	</label>
 	<br>
 		
-		<input id="slider1" type="range" min="1" max="10" step="1" />
+		<input id="marks" type="number" min="1" max="10" value="1" ng-model="formdata.marks" required/>
 		
 		
 		</div>
@@ -38,17 +38,17 @@
 	</label>
 	<br>
 		
-		<label class="radio-inline" for="teacher">
-		<input type="radio"  id="NotGood" name="options"  ng-model="content" value="NotGood"> Not Good
+		<label class="radio-inline" for="NotGood">
+		<input type="radio"  id="NotGood" name="content"  ng-model="formdata.content" value="NotGood"> Not Good
 		</label>
-		<label class="radio-inline" for="student">
-		<input type="radio" id="Fair" name="options"  ng-model="content" value="fair"> Fair
+		<label class="radio-inline" for="Fair">
+		<input type="radio" id="Fair" name="content"  ng-model="formdata.content" value="fair"> Fair
 		</label>
-		<label class="radio-inline" for="student">
-		<input type="radio" id="Good" name="options"  ng-model="content" value="Good"> Good
+		<label class="radio-inline" for="Good">
+		<input type="radio" id="Good" name="content"  ng-model="formdata.content" value="Good"> Good
 		</label>
-		<label class="radio-inline" for="student">
-		<input type="radio" id="Excellent" name="options"  ng-model="content" value="Excellent"> Excellent
+		<label class="radio-inline" for="Excellent">
+		<input type="radio" id="Excellent" name="content"  ng-model="formdata.content" value="Excellent"> Excellent
 		</label>
 		</div>
 	</div>
@@ -61,8 +61,7 @@
 	
 	</label>
 	<br>
-		
-		<input id="slider1" type="range" min="1" max="10" step="1" />
+		<input id="skills" type="number" min="1" max="10" value="1" ng-model="formdata.skills" required/>
 		</div>
 	</div>
 
@@ -76,10 +75,10 @@
 	<br>
 		
 		<label class="radio-inline" for="Yes">
-		<input type="radio"  id="Yes" name="options"   value="Yes"> Yes
+		<input type="radio"  id="Yes" name="concepts" ng-model="formdata.concepts"   value="Yes"> Yes
 		</label>
 		<label class="radio-inline" for="No">
-		<input type="radio" id="No" name="options"  value="No"> No
+		<input type="radio" id="No" name="concepts" ng-model="formdata.concepts" value="No"> No
 		</label>
 		</div>
 	</div>
@@ -95,10 +94,10 @@
 	<br>
 		
 		<label class="radio-inline" for="Yes">
-		<input type="radio"  id="Yes" name="option"  ng-model="content" value="Yes"> Yes
+		<input type="radio"  id="Yes" name="manner"  ng-model="formdata.manner" value="Yes"> Yes
 		</label>
 		<label class="radio-inline" for="No">
-		<input type="radio" id="No" name="option"  ng-model="content" value="No"> No
+		<input type="radio" id="No" name="manner"  ng-model="formdata.manner" value="No"> No
 		</label>
 		</div>
 	</div>
@@ -113,8 +112,7 @@
 	
 	</label>
 	<br>
-		
-		<input id="slider1" type="range" min="1" max="10" step="1" />
+		<input id="env" type="number" min="1" max="10" value="1" ng-model="formdata.env" required/>
 		</div>
 	</div>
 	
@@ -124,7 +122,7 @@
 	
 		
 		 <label for="address">Feedback:</label><br>
-	<textarea class="form-control"  id="comment"></textarea>
+	<textarea class="form-control"  id="comment" ng-model="formdata.comment" name="comment"></textarea>
 		</div>
 	</div>
 	
@@ -137,7 +135,7 @@
   
 
 	
-	<div class="col-md-6 container"> <button type="submit" class="btn btn-success">Submit</button>
+	<div class="col-md-6 container"> <button type="submit" class="btn btn-success" >Submit</button>
 	</div>
 	
 	

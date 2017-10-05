@@ -7,7 +7,13 @@ var clas = new Schema({
   collegeid	:	String,
 	subcode	:	Number,
  subjectname:	String,
-	feedback:	[{ uniroll: Number 
+	feedback:	[{ uniroll: Number, 
+					marks: Number,
+					content: String,
+					skills: Number,
+					concepts: String,
+					manner: String,
+					comment: String
 				}]
 })
 	
