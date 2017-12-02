@@ -12,28 +12,142 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="https://use.fontawesome.com/0beee6d178.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/angular.min.js"></script>
-<script src="js/angularjs"></script>
-<script src="js/angular-route.min.js"></script>
-<script src="js/angular-messages.min.js"></script>
-<script src="js/app.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/angular-messages.min.js"></script>
+		<script src="js/app.js"></script>
 
  
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.black{
-background-color: black;
-text-color: gray;
+.submitfeedback {
+    background-image: url('qbg.jpg');
+}
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    position: fixed;
+    left: 250px;
+    z-index: 1000;
+    overflow-y: auto;
+    margin-left: -250px;
+    width: 0;
+    height: 100%;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    padding: 15px;
+    width: 100%;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    color: #999999;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    background: none;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: auto;
+    width: 50%;
+	color: #DF744A;
 }
 
 .card:hover {
@@ -45,148 +159,133 @@ text-color: gray;
 }
  body {
         overflow-x: hidden;
+		color: orange;
     }
 	
+h2 {
+  text-align: center;
+}
 
+table caption {
+	padding: .5em 0;
+}
+
+@media screen and (max-width: 767px) {
+  table caption {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.p {
+  text-align: center;
+  padding-top: 140px;
+  font-size: 14px;
+}
 
 </style>
+<base href="/">
 </head>
-<body background="images/sbg.jpg">
-
-<div class="col-md-2"></div>
-<div class="col-md-8">
-<br>
-<br>
-
-<div class="card">
-<br>
-
-<h2 style="text-align:center;color:#ffe0bd;">Register- Student</h2> 
-
-<br>
- <form class="form" ng-submit="subreg()" name="registerForm">
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="fname" style="color:#ffe0bd;">First Name:</label>
-	<input type="text" class="form-control" id="fname" style="width: auto;" ng-model="reg.fname">
-	</div>
-	</div>
-	
-  
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="mname" style="color:#ffe0bd;">Middle Name:</label>
-	<input type="text" class="form-control" id="mname" style="width: auto;" ng-model="reg.mname" >
-	</div>
-	</div>
-  
-  
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="lname"  style="color:#ffe0bd;">Last Name:</label>
-	<input type="text" class="form-control" id="lname" style="width: auto;" ng-model="reg.lname" >
-	</div>
-	</div>
-	
-	
-	
-	
+<body background=".jpg">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
 		
-	
-	
-	
-	
-					
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="uniroll"  style="color:#ffe0bd;">Roll No:</label>
-	<input type="number" class="form-control" id="uniroll" style="width: auto;" ng-model="reg.uniroll" >
-	</div>
-	</div>
+		
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings </a></li>
+             	<li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Help</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a></li>
+            </ul>
+            
+        </div>
+    </div>
+</nav>
 
-	
-	
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="university"  style="color:#ffe0bd;">University:</label>
-	<input type="text" class="form-control" id="university" style="width: auto;" ng-model="reg.collegename">
-	</div>
-	</div>
-	
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="semester"  style="color:#ffe0bd;">Semester:</label>
-	<input type="number" class="form-control" id="semester" style="width: auto;" ng-model="reg.semno">
-	</div>
-	</div>
-	
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="twnumber" style="color:#ffe0bd;">Whatsapp No:</label>
-	<input type="number" class="form-control" id="twnumber" style="width: auto;" ng-model="reg.whatsappno" >
-	</div>
-	</div>
-	
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="temail"  style="color:#ffe0bd;">Email:</label>
-	<input type="email" class="form-control" id="temail" style="width: auto;" ng-model="reg.email" >
-	</div>
-	</div>
-	
+<div id="wrapper" class="toggled">
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              	<li class="sidebar-brand">
+                    <br>
+                </li>
+                <li class="sidebar-brand">
+                    <a href="#" class="navbar-brand">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Name
+                    </a>
+                </li>
+                <li>
+                    <a href="/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                </li>
+                 <li>
+                    <a href="/download"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Download Articles </a>
+                </li>                
+                <li style="color:#DF744A">
+                    <span class="glyphicon glyphicon-education" aria-hidden="true"></span><font color="#337AB7"> FEEDBACK </font>
+                </li>
+                <li>
+                    <a href="/submit"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Submit FeedBack</a>
+                </li>
+                <li>
+                    <a href="/editfeedback"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Edit FeedBack </a>
+                </li>
+                <li style="color:#DF744A">
+                    <span class="glyphicon glyphicon glyphicon-calendar" aria-hidden="true"></span><font color="#337AB7"> SCHEDULE </font>
+                </li>
+                <li>
+                    <a href="/viewschedule"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Schedule </a>
+                </li>
+				
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="password"  style="color:#ffe0bd;">Password:</label>
-	<input type="password" class="form-control" id="password" style="width: auto;" ng-model="reg.password" >
-	</div>
-	</div>
-	
-	<div class="col-md-4">
-	<div class="form-group">
-    <label for="branch"  style="color:#ffe0bd;">Branch:</label>
-	<input type="text" class="form-control" id="branch" style="width: auto;" ng-model="reg.branchname" >
-	</div>
-	</div>
-	
-  
-  
-  
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+				
+                    <div class="col-md-12">
+                      <br>
+                      <h1>Snappy Comeback</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+						Where Feedbacks are taken online!
+                    </div>
+                </div>
+				  <div class="row">
+				<section ng-view>
+		
+				</section>
+				</div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+</div>
+<!-- /#wrapper -->
 
-	
-	<div class="col-md-12 container"> <button type="submit" class="btn btn-success">Signup</button>
-	</div>
-	
-	
-	
-	<div class="col-md-12 container"> <button type="reset" class="btn btn-warning">Reset</button>
-	</div>
-	
-	
-	
-  </form>
 
-   <div class="container"></div><div class="container"></div><div class="container"></div>
-  </div>
-  
-	</div> 
-  </div> 
-  <script>
- var app=angular.module('myapp',['ngRoute']);
-app.controller('submitregistrationController',function($scope,$q,$http,$routeParams){
-	console.log('submitregistration  Controller called!');
-	$scope.subreg=function(){
-        $http.post('/',$scope.reg).
-        then(function(response) {
-            console.log("posted successfully");
-        }).catch(function(response) {
-            console.error("error in posting");
-        })
-    
-}		
-	
-});
-   </script>
+ 
+<script> 
+ 
+$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
+</script>	
 </body>
 </html> 

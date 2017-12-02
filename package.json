@@ -20,7 +20,8 @@
     "nvd3": "^1.8.6",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "rocketchat": "^0.57.3-alpha"
   },
   "devDependencies": {},
   "scripts": {
